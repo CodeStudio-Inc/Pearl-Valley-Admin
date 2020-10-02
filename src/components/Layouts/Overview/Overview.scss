@@ -1,0 +1,135 @@
+.overview-container {
+	margin: 50px 280px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 75%;
+}
+
+.stats {
+	width: 100%;
+}
+
+.banner-div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	background: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	margin-bottom: 1rem;
+}
+
+.banner-inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
+}
+
+.welcome {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	line-height: 0px;
+	p {
+		font-size: 25px;
+		font-weight: 400;
+		color: rgba(0, 0, 0, 0.7);
+		margin-bottom: 0px;
+	}
+	h6 {
+		font-size: 16px;
+		color: rgba(0, 0, 0, 0.4);
+		font-weight: 400;
+	}
+}
+
+.steps {
+	display: flex;
+	flex-direction: column;
+	line-height: 0px;
+	h4 {
+		color: rgba(0, 0, 0, 0.7);
+		font-weight: 500;
+	}
+}
+
+.steps-row {
+	display: flex;
+	align-items: center;
+	width: 100%;
+
+	p {
+		margin-left: 0.5rem;
+		font-size: 14px;
+		color: #de8446;
+	}
+}
+
+.steps-row:hover {
+	cursor: pointer;
+}
+
+.more {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	line-height: 0px;
+	h4 {
+		color: rgba(0, 0, 0, 0.7);
+		font-weight: 500;
+	}
+}
+
+.overview-row {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 40px;
+	border-bottom: 1px solid rgba(126, 26, 26, 0.1);
+	box-sizing: border-box;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+
+	h3 {
+		margin-left: 1rem;
+		color: rgba(0, 0, 0, 0.4);
+		font-weight: 500;
+		font-size: 15px;
+	}
+}
+
+.site-status {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 49%;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	background: #fff;
+	flex-direction: column;
+}
+
+.activity {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 49%;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	background: #fff;
+	flex-direction: column;
+}
+
+.content {
+	width: 100%;
+	height: 200px;
+}

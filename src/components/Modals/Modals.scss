@@ -1,0 +1,36 @@
+.container-header {
+	width: 100%;
+	text-align: left;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	h2 {
+		color: rgba(0, 0, 0, 0.5);
+	}
+	p {
+		color: #de8446;
+		font-weight: 500;
+	}
+}
+
+.container-header p:hover {
+	font-weight: 400;
+	cursor: pointer;
+}
+
+.header_links {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 20%;
+}
+
+.header_link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.header_link:hover {
+	cursor: pointer;
+}
