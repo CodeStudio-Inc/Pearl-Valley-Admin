@@ -15,7 +15,7 @@ const Auth = (props) => {
 	const submitHandler = (event) => {
 		event.preventDefault();
 		props.onAuth(email, password, (response) => {
-			console.log('response', response);
+			// console.log('response', response);
 			if (response.localId) {
 				props.history.push('./overview');
 			}

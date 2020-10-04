@@ -15,10 +15,6 @@ const Header = (props) => {
 					<AddCircleIcon />
 					<p>{props.post}</p>
 				</div>
-				<div className="header_link">
-					<AddCircleIcon />
-					<p>{props.page}</p>
-				</div>
 			</div>
 		</div>
 	);

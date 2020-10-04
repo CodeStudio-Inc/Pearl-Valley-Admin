@@ -1,5 +1,5 @@
 import * as actionTypes from '../Actions/Actions';
-import axios from '../../Axios';
+import { db } from '../Firebase';
 
 export const deletePostAction = () => {
 	return {
@@ -10,7 +10,7 @@ export const deletePostAction = () => {
 export const deletePostSuccess = (postId) => {
 	return {
 		type: actionTypes.DELETE_POST_ACTION_SUCCESS,
-		name: postId
+		data: postId
 	};
 };
 
@@ -21,13 +21,16 @@ export const deletePostFail = () => {
 };
 
 export const deletePost = (postId) => {
+	// console.log('Postid', postId);
 	return (dispatch) => {
 		dispatch(deletePostAction());
-		axios
-			.delete(`/post/${postId}`)
+		db
+			.collection('stuwie-dash')
+			.doc(postId)
+			.delete()
 			.then((res) => {
-				console.log('deleted', res);
-				dispatch(deletePostSuccess());
+				// console.log('deleted', res);
+				dispatch(deletePostSuccess(postId));
 			})
 			.catch((error) => {
 				console.log(error);

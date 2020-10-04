@@ -1,5 +1,5 @@
 import * as actionTypes from '../Actions/Actions';
-import axios from '../../Axios';
+import { db } from '../Firebase';
 
 export const getPostAction = () => {
 	return {
@@ -7,10 +7,10 @@ export const getPostAction = () => {
 	};
 };
 
-export const getPostSuccess = (posts) => {
+export const getPostSuccess = (products) => {
 	return {
 		type: actionTypes.GET_POST_ACTION_SUCCESS,
-		data: posts
+		data: products
 	};
 };
 
@@ -22,16 +22,21 @@ export const getPostFail = () => {
 
 export const getPost = () => {
 	return (dispatch) => {
-		dispatch(getPostAction());
+		try {
+			dispatch(getPostAction());
 
-		axios
-			.get('/post.json')
-			.then((res) => {
-				console.log(res);
-				dispatch(getPostSuccess(res.data));
-			})
-			.catch((error) => {
-				console.log(error);
+			db.collection('stuwie-dash').onSnapshot((snapshot) => {
+				const products = [];
+				snapshot.forEach((doc) => {
+					const data = doc.data();
+					products.push({ id: doc.id, ...data });
+					// console.log('Snapshot', doc.id);
+				});
+				// console.log('myProducts', products);
+				dispatch(getPostSuccess(products));
 			});
+		} catch (error) {
+			console.log(error);
+		}
 	};
 };

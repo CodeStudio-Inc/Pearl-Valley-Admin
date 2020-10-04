@@ -10,7 +10,9 @@ const siteStats = () => {
 						<h3>Site Status</h3>
 					</div>
 					<div className="content">
-						<p>Site Staus</p>
+						<div className="content-inner">
+							<p>Coming Soon</p>
+						</div>
 					</div>
 				</div>
 				<div className="activity">
@@ -18,7 +20,9 @@ const siteStats = () => {
 						<h3>Activity</h3>
 					</div>
 					<div className="content">
-						<p>activity</p>
+						<div className="content-inner">
+							<p>Coming Soon</p>
+						</div>
 					</div>
 				</div>
 			</div>

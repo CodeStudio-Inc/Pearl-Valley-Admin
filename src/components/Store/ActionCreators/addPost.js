@@ -1,5 +1,5 @@
 import * as actionTypes from '../Actions/Actions';
-import axios from '../../Axios';
+import { db } from '../Firebase';
 
 export const addPostAction = () => {
 	return {
@@ -21,21 +21,25 @@ export const addPostActionFail = (error) => {
 	};
 };
 
-export const addPost = (image, title, description) => {
+export const addPost = (image, product, suk, price, description) => {
 	return (dispatch) => {
 		dispatch(addPostAction());
 
 		const post = {
 			image,
-			title,
+			product,
+			suk,
+			price,
 			description,
 			date: new Date()
 		};
-		axios
-			.post('/post.json', post)
+
+		db
+			.collection('stuwie-dash')
+			.add({ post })
 			.then((res) => {
-				console.log('response', res);
-				dispatch(addPostActionSuccess(res.data.name));
+				// console.log('response', res);
+				dispatch(addPostActionSuccess());
 			})
 			.catch((error) => {
 				console.log('response', error);

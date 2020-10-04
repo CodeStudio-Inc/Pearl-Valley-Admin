@@ -52,7 +52,7 @@ export const auth = (email, password, callback) => {
 				authData
 			)
 			.then((res) => {
-				console.log(res);
+				// console.log(res);
 				dispatch(authSuccess(res.data.idToken, res.data.localId, res.data.email));
 				dispatch(checkAuthTimeout(res.data.expiresIn));
 				callback(res.data);

@@ -39,7 +39,7 @@ export const update = (displayName, photoUrl) => {
 				updateData
 			)
 			.then((res) => {
-				console.log('update', res);
+				// console.log('update', res);
 				dispatch(updateSuccess(res.data.displayName, res.data.photoUrl, res.data.idToken));
 			})
 			.catch((error) => {
