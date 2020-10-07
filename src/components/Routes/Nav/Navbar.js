@@ -17,7 +17,7 @@ const Navbar = (props) => {
 		<div className="nav-container">
 			<div className="nav-row">
 				<img src={Logo} alt="logo" className="logo" />
-				<div>
+				<div className="prof_div" onClick={editHandler}>
 					<p>
 						Howdy,
 						{props.userName ? (

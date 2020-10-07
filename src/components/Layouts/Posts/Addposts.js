@@ -13,10 +13,11 @@ require('../../Store/Firebase');
 const Addposts = (props) => {
 	const [ image, setImage ] = useState();
 	const [ progress, setProgress ] = useState(0);
-	const [ product, setProduct ] = useState('');
+	const [ item, setProduct ] = useState('');
 	const [ suk, setSuk ] = useState('');
 	const [ price, setPrice ] = useState('');
 	const [ description, setDescription ] = useState('');
+	const [ category, setCategory ] = useState('');
 
 	const imageUploadHandler = async (event) => {
 		if (event.target.files[0]) {
@@ -48,13 +49,16 @@ const Addposts = (props) => {
 
 	const onPostSubmit = (event) => {
 		event.preventDefault();
-		props.onPost(image, product, suk, price, description);
+		props.onPost(image, product, suk, price, description, category);
 		setImage();
 		setProduct('');
 		setPrice('');
 		setSuk('');
 		setDescription('');
+		setCategory('');
 	};
+
+	const product = item.toString();
 
 	return (
 		<div>
@@ -71,7 +75,7 @@ const Addposts = (props) => {
 
 					<div className="upload">
 						<input type="file" placeholder="Choose featured Image" onChange={imageUploadHandler} />
-						<p>Upload Product Image</p>
+						<p>Upload Product Image(JPEG file)</p>
 						<img src={image} />
 					</div>
 					{progress > 0 && (
@@ -89,6 +93,12 @@ const Addposts = (props) => {
 								type="text"
 								placeholder="Product"
 								onChange={(e) => setProduct(e.target.value)}
+							/>
+							<input
+								value={category}
+								type="text"
+								placeholder="Category"
+								onChange={(e) => setCategory(e.target.value)}
 							/>
 							<input value={suk} type="text" placeholder="SKU" onChange={(e) => setSuk(e.target.value)} />
 							<input
@@ -124,8 +134,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onPost: (image, product, suk, price, description) =>
-			dispatch(actions.addPost(image, product, suk, price, description))
+		onPost: (image, product, suk, price, description, category) =>
+			dispatch(actions.addPost(image, product, suk, price, description, category))
 	};
 };
 

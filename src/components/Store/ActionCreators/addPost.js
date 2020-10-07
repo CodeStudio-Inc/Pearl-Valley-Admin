@@ -21,7 +21,7 @@ export const addPostActionFail = (error) => {
 	};
 };
 
-export const addPost = (image, product, suk, price, description) => {
+export const addPost = (image, product, suk, price, description, category) => {
 	return (dispatch) => {
 		dispatch(addPostAction());
 
@@ -31,12 +31,14 @@ export const addPost = (image, product, suk, price, description) => {
 			suk,
 			price,
 			description,
+			category,
 			date: new Date()
 		};
 
 		db
-			.collection('stuwie-dash')
-			.add({ post })
+			.collection('pearl-valley')
+			.doc()
+			.set(post)
 			.then((res) => {
 				// console.log('response', res);
 				dispatch(addPostActionSuccess());

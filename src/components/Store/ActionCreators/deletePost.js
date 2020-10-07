@@ -25,11 +25,11 @@ export const deletePost = (postId) => {
 	return (dispatch) => {
 		dispatch(deletePostAction());
 		db
-			.collection('stuwie-dash')
+			.collection('pearl-valley')
 			.doc(postId)
 			.delete()
 			.then((res) => {
-				// console.log('deleted', res);
+				console.log('deleted', res);
 				dispatch(deletePostSuccess(postId));
 			})
 			.catch((error) => {

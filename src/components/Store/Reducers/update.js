@@ -3,6 +3,7 @@ import { updateObject } from './utility';
 
 const initialState = {
 	displayName: null,
+	email: null,
 	photoUrl: null,
 	token: null,
 	loading: false,
@@ -18,6 +19,7 @@ const update = (state = initialState, action) => {
 		case actionTypes.UPDATE_ACTION_SUCCESS:
 			return updateObject(state, {
 				displayName: action.displayName,
+				email: action.email,
 				photoUrl: action.photoUrl,
 				token: action.idToken,
 				loading: false

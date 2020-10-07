@@ -40,7 +40,7 @@ const Edit = (props) => {
 					<h6>Edit your profile</h6>
 				</div>
 				<div className="row">
-					<div className="inner-row">
+					<div className="inner-row" onClick={() => alert('Coming Soon')}>
 						<h6>PHOTO</h6>
 						<p>Add a photo to your account</p>
 						<ChevronRightIcon />
@@ -50,15 +50,15 @@ const Edit = (props) => {
 				<div className="row">
 					<div className="inner-row" onClick={() => setOpenModal(true)}>
 						<h6>USERNAME</h6>
-						<p>{!props.username ? 'None' : props.username}</p>
+						<p>{!props.username ? 'Add User Name' : props.username}</p>
 						<ChevronRightIcon onClick={() => setOpenModal(true)} />
 					</div>
 				</div>
 				<div className="separator" />
 				<div className="row">
-					<div className="inner-row">
+					<div className="inner-row" onClick={() => alert('Email can only be set during signUp')}>
 						<h6>Email</h6>
-						<p>None</p>
+						<p>{props.email}</p>
 						<ChevronRightIcon />
 					</div>
 				</div>
@@ -69,7 +69,8 @@ const Edit = (props) => {
 
 const mapStateToProps = (state) => {
 	return {
-		username: state.update.displayName
+		username: state.update.displayName,
+		email: state.update.email
 	};
 };
 

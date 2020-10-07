@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Routes from './components/Routes/Routes';
-import Auth from './components/Layouts/Auth/Auth';
-function App() {
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import * as actions from './components/Store/ActionCreators/';
+
+function App(props) {
+	useEffect(() => {
+		props.checkAuthState();
+	}, []);
+
 	return (
 		<div>
 			<Routes />
@@ -9,4 +17,10 @@ function App() {
 	);
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		checkAuthState: () => dispatch(actions.checkAuthState())
+	};
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(App));

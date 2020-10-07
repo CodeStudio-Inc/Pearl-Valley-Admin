@@ -80,19 +80,37 @@
 .search_bar {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-around;
 	width: 100%;
-	background: #fff;
+	// background: #fff;
 	margin-bottom: 0.5rem;
 	border-radius: 5px;
-	box-sizing: border-box;
-	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+	// box-sizing: border-box;
+	// box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 	input {
-		width: 95%;
+		width: 85%;
 		border: none;
 		outline: none;
 		height: 40px;
+		background: #fff;
+		border-radius: 5px;
+		padding-left: 5px;
 	}
+
+	button {
+		background: #fff;
+		border-radius: 5px;
+		border: none;
+		outline: none;
+		height: 30px;
+		width: 100px;
+		box-sizing: border-box;
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	}
+}
+
+.search_bar button:hover {
+	cursor: pointer;
 }
 
 //addPost.scss
@@ -137,7 +155,7 @@
 
 	input {
 		height: 30px;
-		width: 30%;
+		width: 20%;
 		padding-left: 5px;
 		font: inherit;
 		transition: 0.1s ease-in;

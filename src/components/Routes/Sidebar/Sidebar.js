@@ -4,6 +4,9 @@ import PostAddIcon from '@material-ui/icons/PostAdd';
 // import CommentIcon from '@material-ui/icons/Comment';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../Store/ActionCreators';
+
 import './Sidebar.scss';
 
 const Sidebar = (props) => {
@@ -15,12 +18,12 @@ const Sidebar = (props) => {
 		props.history.push('/overview');
 	};
 
-	const redirectToPages = () => {
-		props.history.push('/pages');
-	};
-
-	const redirectToComments = () => {
-		props.history.push('/edit');
+	const logoutHandler = (e) => {
+		e.preventDefault();
+		props.logout();
+		setTimeout(() => {
+			props.history.push('/');
+		}, 1000);
 	};
 
 	return (
@@ -52,10 +55,18 @@ const Sidebar = (props) => {
 				</div> */}
 			</div>
 			<div className="logout-btn">
-				<button type="submit">Logout</button>
+				<button type="submit" onClick={logoutHandler}>
+					Logout
+				</button>
 			</div>
 		</div>
 	);
 };
 
-export default withRouter(Sidebar);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		logout: () => dispatch(actions.logout())
+	};
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(Sidebar));

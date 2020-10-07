@@ -7,10 +7,11 @@ export const updateAction = () => {
 	};
 };
 
-export const updateSuccess = (displayName, photoUrl, token) => {
+export const updateSuccess = (displayName, photoUrl, token, email) => {
 	return {
 		type: actionTypes.UPDATE_ACTION_SUCCESS,
 		displayName,
+		email,
 		photoUrl,
 		idToken: token
 	};
@@ -40,7 +41,7 @@ export const update = (displayName, photoUrl) => {
 			)
 			.then((res) => {
 				// console.log('update', res);
-				dispatch(updateSuccess(res.data.displayName, res.data.photoUrl, res.data.idToken));
+				dispatch(updateSuccess(res.data.displayName, res.data.photoUrl, res.data.idToken, res.data.email));
 			})
 			.catch((error) => {
 				console.log('update', error);
