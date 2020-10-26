@@ -1,5 +1,5 @@
 import * as actionTypes from '../Actions/Actions';
-import axios from 'axios';
+import {authenticate} from '../Firebase'
 
 export const authAction = () => {
 	return {
@@ -7,12 +7,14 @@ export const authAction = () => {
 	};
 };
 
-export const authSuccess = (token, userId, email) => {
+export const authSuccess = ( userId, email,userName,token) => {
 	return {
 		type: actionTypes.AUTH_ACTION_SUCCESS,
-		idToken: token,
-		userId: userId,
-		email: email
+		// idToken: token,
+		uid: userId,
+		email: email,
+		displayName: userName,
+		xa : token
 	};
 };
 
@@ -40,36 +42,41 @@ export const checkAuthTimeout = (expirationTime) => {
 	};
 };
 
-export const auth = (email, password, callback) => {
-	return (dispatch) => {
+export const auth  = (email, password) => {
+	return async (dispatch) => {
 		dispatch(authAction());
-		const authData = {
-			email: email,
-			password: password,
-			returnSecureToken: true
-		};
 
-		axios
-			.post(
-				'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyADY8r04F8_KaEdvaUbX3Xe2zsHRB-Qc-A',
-				authData
-			)
-			.then((res) => {
-				// console.log(res);
-				const expirationDate = new Date(new Date().getTime() + res.data.expiresIn * 1000);
-				localStorage.setItem('token', res.data.idToken);
-				localStorage.setItem('expirationDate', expirationDate);
-				localStorage.setItem('userId', res.data.localId);
-				dispatch(authSuccess(res.data.idToken, res.data.localId, res.data.email));
-				dispatch(checkAuthTimeout(res.data.expiresIn));
-				callback(res.data);
-			})
-			.catch((error) => {
-				console.log(error);
-				dispatch(authFail(error.message));
-			});
-	};
+
+		await 	authenticate.signInWithEmailAndPassword(email,password)
+		.then(res => {
+			console.log('Authentication',res.user)
+			dispatch(authSuccess(res.user.uid,res.user.email,res.user.displayName,res.user.xa))
+		})
+		.catch(err => {
+			console.log(err)
+		})
+	// 	axios
+	// 		.post(
+	// 			'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyADY8r04F8_KaEdvaUbX3Xe2zsHRB-Qc-A',
+	// 			authData
+	// 		)
+	// 		.then((res) => {
+	// 			// console.log(res);
+	// 			const expirationDate = new Date(new Date().getTime() + res.data.expiresIn * 1000);
+	// 			localStorage.setItem('token', res.data.idToken);
+	// 			localStorage.setItem('expirationDate', expirationDate);
+	// 			localStorage.setItem('userId', res.data.localId);
+	// 			dispatch(authSuccess(res.data.idToken, res.data.localId, res.data.email));
+	// 			dispatch(checkAuthTimeout(res.data.expiresIn));
+	// 			callback(res.data);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log(error);
+	// 			dispatch(authFail(error.message));
+	// 		});
+	// };
 };
+}
 
 export const checkAuthState = () => {
 	return (dispatch) => {

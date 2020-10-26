@@ -4,6 +4,7 @@ import { updateObject } from './utility';
 const initialState = {
 	email: null,
 	userId: null,
+	userName: null,
 	token: null,
 	error: null,
 	loading: false
@@ -18,9 +19,10 @@ const auth = (state = initialState, action) => {
 			});
 		case actionTypes.AUTH_ACTION_SUCCESS:
 			return updateObject(state, {
-				token: action.idToken,
-				userId: action.userId,
+				token: action.xa,
+				userId: action.uid,
 				email: action.email,
+				userName: action.displayName,
 				error: null,
 				loading: false
 			});

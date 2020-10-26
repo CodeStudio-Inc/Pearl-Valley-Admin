@@ -12,15 +12,17 @@ const Auth = (props) => {
 	const [ email, setEmail ] = useState('Stuartkal@gmail.com');
 	const [ password, setPassword ] = useState('pass0123');
 
-	const submitHandler = (event) => {
+	const submitHandler = async (event) => {
 		event.preventDefault();
-		props.onAuth(email, password, (response) => {
-			// console.log('response', response);
-			if (response.localId) {
+		await props.onAuth(email,password)
+		console.log(props.token)
+			if(props.token){
 				props.history.push('./overview');
 			}
-		});
+	
 	};
+
+	
 
 	return (
 		<div>
@@ -60,7 +62,8 @@ const Auth = (props) => {
 
 const mapStateToProps = (state) => {
 	return {
-		userId: state.auth.userId,
+		token: state.auth.token,
+		username: state.auth.userName,
 		loading: state.auth.loading,
 		error: state.auth.error
 	};
@@ -68,7 +71,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onAuth: (email, password, callback) => dispatch(actions.auth(email, password, callback))
+		onAuth: (email, password) => dispatch(actions.auth(email, password))
 	};
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Auth));

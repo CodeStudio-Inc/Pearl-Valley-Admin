@@ -22,35 +22,37 @@ export const getPostFail = () => {
 
 export const getPost = (search) => {
 	return (dispatch) => {
-		try {
-			dispatch(getPostAction());
 
-			if (search === '') {
-				db.collection('pearl-valley').onSnapshot((snapshot) => {
-					const products = [];
-					snapshot.forEach((doc) => {
-						const data = doc.data();
-						products.push({ id: doc.id, ...data });
-						// console.log('Snapshot', doc.data());
+			try {
+				dispatch(getPostAction());
+	
+				if (search === '') {
+					db.collection('pearl-valley').onSnapshot((snapshot) => {
+						const products = [];
+						snapshot.forEach((doc) => {
+							const data = doc.data();
+							products.push({ id: doc.id, ...data });
+							// console.log('Snapshot', doc.data());
+						});
+						// console.log('myProducts', products);
+						dispatch(getPostSuccess(products));
 					});
-					// console.log('myProducts', products);
-					dispatch(getPostSuccess(products));
-				});
-			} else {
-				db.collection('pearl-valley').where('category', '==', search).onSnapshot((snapshot) => {
-					const products = [];
-					snapshot.forEach((doc) => {
-						const data = doc.data();
-						products.push({ id: doc.id, ...data });
-						// console.log('Snapshot', doc.data());
+				} else {
+					db.collection('pearl-valley').where('category', '==', search).onSnapshot((snapshot) => {
+						const products = [];
+						snapshot.forEach((doc) => {
+							const data = doc.data();
+							products.push({ id: doc.id, ...data });
+							// console.log('Snapshot', doc.data());
+						});
+						// console.log('myProducts', products);
+						dispatch(getPostSuccess(products));
 					});
-					// console.log('myProducts', products);
-					dispatch(getPostSuccess(products));
-				});
+				}
+			} catch (error) {
+				console.log(error);
 			}
-		} catch (error) {
-			console.log(error);
-		}
+		
 	};
 };
 
