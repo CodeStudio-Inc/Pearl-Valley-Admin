@@ -21,7 +21,7 @@ const Posts = (props) => {
 	// const searchSubmitHandler = () => {
 	// 	props.getPostFilter(search);
 	// };
-
+		
 	const postsArray = props.posts || [];
 	const newSearch = search.toString();
 	// console.log('myPosts', props.posts && props.posts);
