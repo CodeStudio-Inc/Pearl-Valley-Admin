@@ -3,13 +3,14 @@ import 'firebase/firestore';
 import 'firebase/auth'
 
 const firebaseConfig = firebase.initializeApp({
-	apiKey: "AIzaSyADY8r04F8_KaEdvaUbX3Xe2zsHRB-Qc-A",
-    authDomain: "stuwie-dash.firebaseapp.com",
-    databaseURL: "https://stuwie-dash.firebaseio.com",
-    projectId: "stuwie-dash",
-    storageBucket: "stuwie-dash.appspot.com",
-    messagingSenderId: "358885580460",
-    appId: "1:358885580460:web:19f2d0050b3fca63e48909"
+    apiKey: "AIzaSyDfTUPoQcN97KsBSZaFVZR5_2a_Tu06IZQ",
+    authDomain: "qraftstore-be493.firebaseapp.com",
+    databaseURL: "https://qraftstore-be493.firebaseio.com",
+    projectId: "qraftstore-be493",
+    storageBucket: "qraftstore-be493.appspot.com",
+    messagingSenderId: "548146895636",
+    appId: "1:548146895636:web:927bdd2349fb0d91778001",
+    measurementId: "G-WZJXJF2YGF"
 });
 
 
